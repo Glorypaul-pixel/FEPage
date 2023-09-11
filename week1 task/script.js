@@ -1,30 +1,23 @@
-const day = document.querySelector(".currentTime");
-const UTCTime = document.querySelector(".UTCTime");
+let currentDay = document.querySelector(".currentDayOfTheWeek");
+let UTCTime = document.querySelector(".currentUTCTime");
 
-//To extract current day from the DATE object
-const date = new Date();
-const currentTime = date.getDay();
+function dateAndTime() {
+  let today = new Date();
+  let day = today.getDay();
 
-//To display current day accordingly
-if (currentTime == 0) {
-  day.innerHTML = "Sunday";
-} else if (currentTime == 1) {
-  day.innerHTML = "Monday";
-} else if (currentTime == 2) {
-  day.innerHTML = "Tuesday";
-} else if (currentTime === 3) {
-  day.innerHTML = "Wednesday";
-} else if (currentTime == 4) {
-  day.innerHTML = "Thursday";
-} else if (currentTime == 5) {
-  day.innerHTML = "Friday";
-} else {
-  day.innerHTML = "Saturday";
+  let weeklyDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let todaysDay = weeklyDays[day];
+  currentDay.innerHTML = "Today is " + todaysDay;
+
+  let time = today.getTime();
+  UTCTime.innerHTML = time;
 }
-
-function timer() {
-  const date = new Date();
-  let z = date.getTime();
-  UTCTime.innerHTML = z;
-}
-setTimeout(timer(), 1000);
+setInterval(dateAndTime, 100);
